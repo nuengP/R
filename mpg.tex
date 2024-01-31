@@ -1,0 +1,429 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={mpg visualization},
+  pdfauthor={Permsak B.},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{mpg visualization}
+\author{Permsak B.}
+\date{2023-12-04}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{6}
+\tableofcontents
+}
+\hypertarget{fuel-economy-data-from-1999-to-2008-for-38-popular-models-of-cars-mpg}{%
+\subsubsection{\texorpdfstring{\textbf{Fuel economy data from 1999 to
+2008 for 38 popular models of cars :
+mpg}}{Fuel economy data from 1999 to 2008 for 38 popular models of cars : mpg}}\label{fuel-economy-data-from-1999-to-2008-for-38-popular-models-of-cars-mpg}}
+
+\hypertarget{this-dataset-contains-a-subset-of-the-fuel-economy-data-that-the-epa-makes-available-on-fueleconomy-it-contains-only-models-which-had-a-new-release-every-year-between-1999-and-2008---this-was-used-as-a-proxy-for-the-popularity-of-the-car.-and-this-document-showcases-some-analyses-on-the-mpg-dataset-presenting-visualizations-in-the-form-of-a-few-different-chart-types}{%
+\paragraph{\texorpdfstring{This dataset contains a subset of the fuel
+economy data that the EPA makes available on
+\href{https://fueleconomy.gov/}{fueleconomy} It contains only models
+which had a new release every year between 1999 and 2008 - this was used
+as a proxy for the popularity of the car. \textbf{\emph{And this
+document showcases some analyses on the mpg dataset, presenting
+visualizations in the form of a few different chart
+types}}}{This dataset contains a subset of the fuel economy data that the EPA makes available on fueleconomy It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. And this document showcases some analyses on the mpg dataset, presenting visualizations in the form of a few different chart types}}\label{this-dataset-contains-a-subset-of-the-fuel-economy-data-that-the-epa-makes-available-on-fueleconomy-it-contains-only-models-which-had-a-new-release-every-year-between-1999-and-2008---this-was-used-as-a-proxy-for-the-popularity-of-the-car.-and-this-document-showcases-some-analyses-on-the-mpg-dataset-presenting-visualizations-in-the-form-of-a-few-different-chart-types}}
+
+\hypertarget{mpg-miles-per-gallon-is-numbers-tell-you-how-many-miles-a-car-can-go-on-a-gallon-of-fuel}{%
+\subparagraph{\texorpdfstring{\textbf{\emph{mpg (miles per gallon)}} is
+numbers tell you how many miles a car can go on a gallon of
+fuel}{mpg (miles per gallon) is numbers tell you how many miles a car can go on a gallon of fuel}}\label{mpg-miles-per-gallon-is-numbers-tell-you-how-many-miles-a-car-can-go-on-a-gallon-of-fuel}}
+
+\includegraphics[width=0.75\textwidth,height=\textheight]{https://hips.hearstapps.com/hmg-prod/images/my-car-needs-gasoline-royalty-free-image-1584169997.jpg}
+
+\hypertarget{view-a-mpg-dataset}{%
+\subsubsection{\texorpdfstring{\textbf{View a mpg
+dataset}}{View a mpg dataset}}\label{view-a-mpg-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 234 x 11
+##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
+##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
+##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
+##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
+##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
+##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
+##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
+##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
+##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
+##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
+## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
+## # i 224 more rows
+\end{verbatim}
+
+\hypertarget{top-10-brands-with-the-lowest-mpg}{%
+\subsubsection{\texorpdfstring{\textbf{Top 10 Brands with the lowest
+mpg}}{Top 10 Brands with the lowest mpg}}\label{top-10-brands-with-the-lowest-mpg}}
+
+\hypertarget{each-charts-show-between-city-roads-and-highways}{%
+\paragraph{\texorpdfstring{\emph{Each charts show between City roads and
+Highways}}{Each charts show between City roads and Highways}}\label{each-charts-show-between-city-roads-and-highways}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# create colors for each brands}
+\NormalTok{colors }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \AttributeTok{audi =} \StringTok{"\#FF0000"}\NormalTok{, }\AttributeTok{chevrolet =} \StringTok{"\#0072BB"}\NormalTok{, }\AttributeTok{dodge =} \StringTok{"\#008000"}\NormalTok{, }\AttributeTok{ford =} \StringTok{"\#FFA500"}\NormalTok{, }\AttributeTok{honda =} \StringTok{"\#800080"}\NormalTok{,}
+  \AttributeTok{hyundai =} \StringTok{"\#A52A2A"}\NormalTok{, }\AttributeTok{jeep =} \StringTok{"\#FF69B4"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{land rover}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"\#989EA5"}\NormalTok{, }\AttributeTok{lincoln =} \StringTok{"\#FF00FF"}\NormalTok{,}
+  \AttributeTok{mercury =} \StringTok{"\#412b76"}\NormalTok{, }\AttributeTok{nissan =} \StringTok{"\#8B0000"}\NormalTok{, }\AttributeTok{pontiac =} \StringTok{"\#00008B"}\NormalTok{, }\AttributeTok{subaru =} \StringTok{"\#006400"}\NormalTok{,}
+  \AttributeTok{toyota =} \StringTok{"\#FF8C00"}\NormalTok{, }\AttributeTok{volkswagen =} \StringTok{"\#9400D3"}
+\NormalTok{)}
+
+\DocumentationTok{\#\# summarise average of highway miles per gallon}
+\DocumentationTok{\#\# and group by manufacturer}
+\NormalTok{manu\_avg\_hwy }\OtherTok{\textless{}{-}}\NormalTok{ mpg }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(manufacturer) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{avg\_hwy =} \FunctionTok{mean}\NormalTok{(hwy)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(avg\_hwy) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+
+\DocumentationTok{\#\# create bar chart and flip to horizontal}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(manu\_avg\_hwy, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=} \FunctionTok{fct\_reorder}\NormalTok{(manufacturer, }\FunctionTok{desc}\NormalTok{(avg\_hwy)), }\AttributeTok{y=}\NormalTok{ avg\_hwy)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ manufacturer)) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{()}
+
+\DocumentationTok{\#\# setting theme and adjust labels on y{-}axis}
+\NormalTok{theme01 }\OtherTok{\textless{}{-}} \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.text.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{axis.ticks.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{)}
+\NormalTok{  ) }
+\NormalTok{theme\_b }\OtherTok{\textless{}{-}} \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{))}
+
+\NormalTok{geom\_t\_manu }\OtherTok{\textless{}{-}} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{toupper}\NormalTok{(manufacturer)),}
+                         \AttributeTok{hjust =} \FloatTok{1.3}\NormalTok{,}
+                         \AttributeTok{colour =} \StringTok{"\#F6F4F4"}\NormalTok{,}
+                         \AttributeTok{fontface=}\StringTok{"bold"}\NormalTok{)}
+
+\DocumentationTok{\#\# customize text, title, subtitle, comment, color}
+\NormalTok{p01 }\OtherTok{\textless{}{-}}
+\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ geom\_t\_manu }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Top 10 Brands with the lowest miles per gallon on highway roads"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"average miles per gallon"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Brand"}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  theme01 }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ colors)}
+
+\DocumentationTok{\#\# summarise average of city miles per gallon}
+\NormalTok{manu\_avg\_cty }\OtherTok{\textless{}{-}}\NormalTok{ mpg }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(manufacturer) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{avg\_cty =} \FunctionTok{mean}\NormalTok{(cty)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(avg\_cty) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+
+\DocumentationTok{\#\# create bar chart and flip to horizontal}
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(manu\_avg\_cty, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=} \FunctionTok{fct\_reorder}\NormalTok{(manufacturer, }\FunctionTok{desc}\NormalTok{(avg\_cty)), }\AttributeTok{y=}\NormalTok{ avg\_cty)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ manufacturer)) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{()}
+
+\NormalTok{p02 }\OtherTok{\textless{}{-}}
+\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ geom\_t\_manu }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Top 10 Brands with the lowest miles per gallon on CITY roads"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"average miles per gallon"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Brand"}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  theme01 }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ colors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# combined charts}
+\NormalTok{p02 }\SpecialCharTok{+}\NormalTok{ p01}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mpg_files/figure-latex/unnamed-chunk-2-1.pdf}\\
+\strut \\
+
+\hypertarget{compare-difference-in-average-mpg-for-each-class-of-cars}{%
+\subsubsection{\texorpdfstring{\textbf{Compare difference in average mpg
+for each class of
+cars}}{Compare difference in average mpg for each class of cars}}\label{compare-difference-in-average-mpg-for-each-class-of-cars}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# pivot wide data of hwy and cty to long data}
+\NormalTok{longer\_hwct }\OtherTok{\textless{}{-}}\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(hwy,cty,class) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(hwy,cty), }\AttributeTok{names\_to =} \StringTok{"compare"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"mpg"}\NormalTok{) }
+
+\DocumentationTok{\#\# compare with average mpg}
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(longer\_hwct, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{class, }\AttributeTok{y =}\NormalTok{ mpg, }\AttributeTok{fill =}\NormalTok{ compare)) }\SpecialCharTok{+} 
+  \DocumentationTok{\#\# plot mean by using position, stat and fun}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"summary"}\NormalTok{, }\AttributeTok{fun =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{)}
+
+\DocumentationTok{\#\# edit title theme x,y name}
+\NormalTok{p03 }\OtherTok{\textless{}{-}}
+\NormalTok{p3 }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Compare miles per gallon of class"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Car class"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"average miles per gallon"}\NormalTok{,}
+       \AttributeTok{caption =} \StringTok{"mpg : miles per gallon"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"mpg on City"}\NormalTok{, }\StringTok{"mpg on Highway"}\NormalTok{), }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#92a1f7"}\NormalTok{, }\StringTok{"\#f27474"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p03}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mpg_files/figure-latex/unnamed-chunk-4-1.pdf}\\
+\strut \\
+
+\hypertarget{compare-mpg-distributions-between-1999-and-2008}{%
+\subsubsection{\texorpdfstring{\textbf{Compare mpg distributions between
+1999 and
+2008}}{Compare mpg distributions between 1999 and 2008}}\label{compare-mpg-distributions-between-1999-and-2008}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# create highways histogram chart}
+\NormalTok{p4 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mpg, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ hwy, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(year))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{binwidth =} \DecValTok{2}\NormalTok{)}
+
+\DocumentationTok{\#\# adjust labels on x{-}axis,y{-}axis,legend,title}
+\NormalTok{p04 }\OtherTok{\textless{}{-}}
+\NormalTok{p4 }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Compare HIGHWAY mpg distribution by year"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"miles per gallon"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Frequency "}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1999"}\NormalTok{, }\StringTok{"2008"}\NormalTok{), }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#0c9953"}\NormalTok{, }\StringTok{"\#43198c"}\NormalTok{),}
+                    \AttributeTok{name =} \StringTok{"year"}\NormalTok{)}
+
+\DocumentationTok{\#\# create city roads histogram}
+\NormalTok{p5 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mpg, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ cty, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(year))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{binwidth =} \DecValTok{2}\NormalTok{)}
+
+\DocumentationTok{\#\# adjust labels on x{-}axis,y{-}axis,legend,title }
+\NormalTok{p05 }\OtherTok{\textless{}{-}}
+\NormalTok{p5 }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Compare CITY mpg distribution by year"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"miles per gallon"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Frequency "}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1999"}\NormalTok{, }\StringTok{"2008"}\NormalTok{), }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#0c9953"}\NormalTok{, }\StringTok{"\#43198c"}\NormalTok{),}
+                    \AttributeTok{name =} \StringTok{"year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p04}\SpecialCharTok{+}\NormalTok{p05}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mpg_files/figure-latex/unnamed-chunk-6-1.pdf}\\
+\strut \\
+
+\hypertarget{compare-mpg-distributions-by-roadway}{%
+\subsubsection{\texorpdfstring{\textbf{Compare mpg distributions by
+roadway}}{Compare mpg distributions by roadway}}\label{compare-mpg-distributions-by-roadway}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# create mpg density chart of long data from p3}
+\NormalTok{p6 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(longer\_hwct, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mpg, }\AttributeTok{fill =}\NormalTok{ compare)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Compare mpg distributions by roadway"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"miles per gallon"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Density "}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"City"}\NormalTok{, }\StringTok{"Highway"}\NormalTok{), }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#fc49eb"}\NormalTok{, }\StringTok{"\#e8f075"}\NormalTok{),}
+                    \AttributeTok{name =} \StringTok{"Roadway"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p6}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mpg_files/figure-latex/unnamed-chunk-8-1.pdf}\\
+\strut \\
+
+\hypertarget{other-variables}{%
+\subsubsection{\texorpdfstring{\textbf{Other
+variables}}{Other variables}}\label{other-variables}}
+
+\hypertarget{subplots-showing-the-correlation-between-highway-hwy-and-city-cty-with-other-variables}{%
+\paragraph{\texorpdfstring{\emph{Subplots showing the correlation
+between highway (hwy) and city (cty) with other
+variables}}{Subplots showing the correlation between highway (hwy) and city (cty) with other variables}}\label{subplots-showing-the-correlation-between-highway-hwy-and-city-cty-with-other-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# subplot of hwy,cty that depend on other variables}
+\DocumentationTok{\#\# correlation on type of drive train}
+\NormalTok{p7 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mpg, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ hwy, }\AttributeTok{y=}\NormalTok{ cty, }\AttributeTok{color =}\NormalTok{ drv) ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\NormalTok{p07 }\OtherTok{\textless{}{-}}
+\NormalTok{p7 }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Type of drive train"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"City miles per gallon"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Highway miles per gallon "}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"4 wheels"}\NormalTok{, }\StringTok{"front{-}wheel"}\NormalTok{, }\StringTok{"rear{-}wheel"}\NormalTok{), }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{),}
+                    \AttributeTok{name =} \StringTok{"Drive train"}\NormalTok{)}
+
+\DocumentationTok{\#\# correlation on number of cylinders}
+\NormalTok{p8 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mpg, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ hwy, }\AttributeTok{y=}\NormalTok{ cty, }\AttributeTok{color =}\NormalTok{ cyl) ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+
+\NormalTok{p08 }\OtherTok{\textless{}{-}}
+\NormalTok{  p8 }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Number of cylinder"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"City miles per gallon"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Highway miles per gallon "}\NormalTok{)}
+
+\DocumentationTok{\#\# correlation on fuel type}
+\NormalTok{p9 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mpg, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ hwy, }\AttributeTok{y=}\NormalTok{ cty, }\AttributeTok{color =}\NormalTok{ fl) ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+
+\NormalTok{p09 }\OtherTok{\textless{}{-}}
+\NormalTok{  p9 }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Fuel types"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"City miles per gallon"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Highway miles per gallon "}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"compressed natural gas"}\NormalTok{, }\StringTok{"diesel"}\NormalTok{, }\StringTok{"electric"}\NormalTok{, }\StringTok{"premium"}\NormalTok{, }\StringTok{"regular"}\NormalTok{), }
+                     \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{, }\StringTok{"pink"}\NormalTok{, }\StringTok{"darkblue"}\NormalTok{, }\StringTok{"lightgreen"}\NormalTok{, }\StringTok{"darkred"}\NormalTok{),}
+                     \AttributeTok{name =} \StringTok{"types"}\NormalTok{)}
+
+\DocumentationTok{\#\# correlation on type of transmission}
+\NormalTok{p10 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mpg, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ hwy, }\AttributeTok{y=}\NormalTok{ cty, }\AttributeTok{color =}\NormalTok{ trans) ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}\NormalTok{ theme\_b }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Type of transmission"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"City miles per gallon"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Highway miles per gallon "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(p07}\SpecialCharTok{+}\NormalTok{p08) }\SpecialCharTok{/}\NormalTok{ (p09}\SpecialCharTok{+}\NormalTok{p10)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mpg_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\end{document}

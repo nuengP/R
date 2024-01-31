@@ -1,0 +1,259 @@
+---
+title: "mpg_visual_pdf"
+author: "Permsak"
+date: "2023-12-05"
+output:
+    pdf_document:
+    toc: yes
+    toc_depth: 6
+
+---
+
+### **Fuel economy data from 1999 to 2008 for 38 popular models of cars : mpg**
+
+#### This dataset contains a subset of the fuel economy data that the EPA makes available on [fueleconomy](https://fueleconomy.gov/) It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. ***And this document showcases some analyses on the mpg dataset, presenting visualizations in the form of a few different chart types***
+
+##### ***mpg (miles per gallon)*** is numbers tell you how many miles a car can go on a gallon of fuel
+
+![](https://hips.hearstapps.com/hmg-prod/images/my-car-needs-gasoline-royalty-free-image-1584169997.jpg){width="75%"}
+
+```{r setup, include = FALSE}
+## setup
+knitr::opts_chunk$set(echo = TRUE)
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+install.packages("dplyr")
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("patchwork")
+install.packages("tinytex")
+tinytex::install_tinytex()
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(patchwork)
+blank_lines <- cat("\n\n")
+```
+
+### **View a mpg dataset**
+
+```{r chunk2}
+mpg
+```
+
+### **Top 10 Brands with the lowest mpg**
+
+#### *Each charts show between City roads and Highways*
+
+```{r}
+## create colors for each brands
+colors <- c(
+  audi = "#FF0000", chevrolet = "#0072BB", dodge = "#008000", ford = "#FFA500", honda = "#800080",
+  hyundai = "#A52A2A", jeep = "#FF69B4", `land rover` = "#989EA5", lincoln = "#FF00FF",
+  mercury = "#412b76", nissan = "#8B0000", pontiac = "#00008B", subaru = "#006400",
+  toyota = "#FF8C00", volkswagen = "#9400D3"
+)
+
+## summarise average of highway miles per gallon
+## and group by manufacturer
+manu_avg_hwy <- mpg %>%
+  group_by(manufacturer) %>%
+  summarise(avg_hwy = mean(hwy)) %>%
+  arrange(avg_hwy) %>%
+  head(10)
+
+## create bar chart and flip to horizontal
+p1 <- ggplot(manu_avg_hwy, aes(x= fct_reorder(manufacturer, desc(avg_hwy)), y= avg_hwy)) +
+  geom_col(aes(fill = manufacturer)) + coord_flip()
+
+## setting theme and adjust labels on y-axis
+theme01 <- theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = "none",
+    plot.title = element_text(face = "bold")
+  ) 
+theme_b <- theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+
+geom_t_manu <- geom_text(aes(label = toupper(manufacturer)),
+                         hjust = 1.3,
+                         colour = "#F6F4F4",
+                         fontface="bold")
+
+## customize text, title, subtitle, comment, color
+p01 <-
+p1 + geom_t_manu + 
+  labs(title = "Top 10 Brands with the lowest miles per gallon on highway roads",
+       y = "average miles per gallon",
+       x = "Brand") +
+  theme01 +
+  scale_fill_manual(values = colors)
+
+## summarise average of city miles per gallon
+manu_avg_cty <- mpg %>%
+  group_by(manufacturer) %>%
+  summarise(avg_cty = mean(cty)) %>%
+  arrange(avg_cty) %>%
+  head(10)
+
+## create bar chart and flip to horizontal
+p2 <- ggplot(manu_avg_cty, aes(x= fct_reorder(manufacturer, desc(avg_cty)), y= avg_cty)) +
+  geom_col(aes(fill = manufacturer)) + coord_flip()
+
+p02 <-
+p2 + geom_t_manu + 
+  labs(title = "Top 10 Brands with the lowest miles per gallon on CITY roads",
+       y = "average miles per gallon",
+       x = "Brand") +
+  theme01 +
+  scale_fill_manual(values = colors)
+
+
+```
+
+```{r fig.width = 13}
+## combined charts
+p02 + p01
+```
+\
+\
+
+### **Compare difference in average mpg for each class of cars**
+
+```{r}
+## pivot wide data of hwy and cty to long data
+longer_hwct <-mpg %>%
+  select(hwy,cty,class) %>%
+  pivot_longer(cols = c(hwy,cty), names_to = "compare", values_to = "mpg") 
+
+## compare with average mpg
+p3 <- ggplot(longer_hwct, aes(x =class, y = mpg, fill = compare)) + 
+  ## plot mean by using position, stat and fun
+  geom_bar(stat = "summary", fun = "mean", position = "dodge")
+
+## edit title theme x,y name
+p03 <-
+p3 + theme_b +
+  labs(title = "Compare miles per gallon of class",
+       x = "Car class",
+       y = "average miles per gallon",
+       caption = "mpg : miles per gallon") +
+  scale_fill_manual(labels = c("mpg on City", "mpg on Highway"), values = c("#92a1f7", "#f27474"))
+```
+
+```{r}
+p03
+```
+\
+\
+
+### **Compare mpg distributions between 1999 and 2008**
+
+```{r}
+## create highways histogram chart
+p4 <- ggplot(mpg, aes(x = hwy, fill = as.factor(year))) +
+  geom_histogram(alpha = 0.5, binwidth = 2)
+
+## adjust labels on x-axis,y-axis,legend,title
+p04 <-
+p4 + theme_b +
+  labs(title = "Compare HIGHWAY mpg distribution by year",
+       x = "miles per gallon",
+       y = "Frequency ") +
+  scale_fill_manual(labels = c("1999", "2008"), 
+                    values = c("#0c9953", "#43198c"),
+                    name = "year")
+
+## create city roads histogram
+p5 <- ggplot(mpg, aes(x = cty, fill = as.factor(year))) +
+  geom_histogram(alpha = 0.5, binwidth = 2)
+
+## adjust labels on x-axis,y-axis,legend,title 
+p05 <-
+p5 + theme_b +
+  labs(title = "Compare CITY mpg distribution by year",
+       x = "miles per gallon",
+       y = "Frequency ") +
+  scale_fill_manual(labels = c("1999", "2008"), 
+                    values = c("#0c9953", "#43198c"),
+                    name = "year")
+```
+
+```{r fig.width = 13}
+p04+p05
+```
+\
+\
+
+### **Compare mpg distributions by roadway**
+
+```{r}
+## create mpg density chart of long data from p3
+p6 <- ggplot(longer_hwct, aes(x = mpg, fill = compare)) +
+  geom_density(alpha = 0.7) + theme_b +
+  labs(title = "Compare mpg distributions by roadway",
+       x = "miles per gallon",
+       y = "Density ") +
+  scale_fill_manual(labels = c("City", "Highway"), 
+                    values = c("#fc49eb", "#e8f075"),
+                    name = "Roadway")
+```
+
+```{r}
+p6
+```
+\
+\
+
+### **Other variables**
+#### *Subplots showing the correlation between highway (hwy) and city (cty) with other variables*
+
+```{r}
+## subplot of hwy,cty that depend on other variables
+## correlation on type of drive train
+p7 <- ggplot(mpg, aes(x= hwy, y= cty, color = drv) ) +
+  geom_point()
+p07 <-
+p7 + theme_b +
+  labs(title = "Type of drive train",
+       x = "City miles per gallon",
+       y = "Highway miles per gallon ") +
+  scale_color_manual(labels = c("4 wheels", "front-wheel", "rear-wheel"), 
+                    values = c("red", "green", "blue"),
+                    name = "Drive train")
+
+## correlation on number of cylinders
+p8 <- ggplot(mpg, aes(x= hwy, y= cty, color = cyl) ) +
+  geom_point()
+
+p08 <-
+  p8 + theme_b +
+  labs(title = "Number of cylinder",
+       x = "City miles per gallon",
+       y = "Highway miles per gallon ")
+
+## correlation on fuel type
+p9 <- ggplot(mpg, aes(x= hwy, y= cty, color = fl) ) +
+  geom_point()
+
+p09 <-
+  p9 + theme_b +
+  labs(title = "Fuel types",
+       x = "City miles per gallon",
+       y = "Highway miles per gallon ") +
+  scale_color_manual(labels = c("compressed natural gas", "diesel", "electric", "premium", "regular"), 
+                     values = c("orange", "pink", "darkblue", "lightgreen", "darkred"),
+                     name = "types")
+
+## correlation on type of transmission
+p10 <- ggplot(mpg, aes(x= hwy, y= cty, color = trans) ) +
+  geom_point() + theme_b +
+  labs(title = "Type of transmission",
+       x = "City miles per gallon",
+       y = "Highway miles per gallon ")
+```
+
+```{r}
+(p07+p08) / (p09+p10)
+```
